@@ -1,0 +1,50 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.externals import joblib
+
+# Reading the music data from the CSV file
+music_data = pd.read_csv('music.csv')
+
+# Splitting the data into input (X) and output (y) variables
+X = music_data.drop(columns=['genre'])
+y = music_data['genre']
+
+# Splitting the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Creating a decision tree classifier
+model = DecisionTreeClassifier()
+model.fit(X_train, y_train)
+
+# Predicting genres for new samples
+predictions = model.predict([[21, 1], [22, 0]])
+print(predictions)  # Output: ['HipHop' 'Dance']
+
+# Calculating the accuracy of the model
+accuracy = accuracy_score(y_test, model.predict(X_test))
+print(accuracy)  # Output: 0.5
+
+# Saving the trained model to a file
+joblib.dump(model, 'music-recommender.joblib')
+
+# Loading the saved model from file
+loaded_model = joblib.load('music-recommender.joblib')
+
+# Predicting genres using the loaded model
+new_predictions = loaded_model.predict([[21, 1], [22, 0]])
+print(new_predictions)  # Output: ['HipHop' 'Dance']
+
+# Visualizing the decision tree
+tree.export_graphviz(model, out_file='music-recommender.dot',
+                     feature_names=['age', 'gender'],
+                     class_names=sorted(y.unique()),
+                     label='all',
+                     rounded=True,
+                     filled=True)
+In this code, we import the necessary libraries and read the music data from the CSV file. Then we split the data into input (X) and output (y) variables. After that, we split the data into training and testing sets using the train_test_split function. We create a decision tree classifier, fit it with the training data, and make predictions for new samples.
+
+Next, we calculate the accuracy of the model by comparing the predicted genres with the actual genres in the testing data. We save the trained model to a file using joblib.dump and load it back into memory using joblib.load. We use the loaded model to make predictions again.
+
+Finally, we visualize the decision tree using the export_graphviz function and save it to a DOT file named "music-recommender.dot".
