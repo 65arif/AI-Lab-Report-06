@@ -1,0 +1,35 @@
+# The following portion of the code is used to read the dataset and store it in a dataframe.
+# The dataset is stored in a variable called df.
+# The dataset is read using the read_csv() function of the pandas library.
+# The dataset is read from the file path stored in the variable path.
+import pandas as pd
+df = pd.read_csv('vgsales.csv')
+
+# The dataset is displayed using the head() function of the pandas library.
+# The number of rows and columns of the dataset are stored in the variables called shape_1 and shape_2 respectively.
+# The shape of the dataset is printed to check the number of rows and columns in the dataset.
+print(df.head())
+shape_1, shape_2 = df.shape
+print(f"Shape of the dataset: {shape_1} rows, {shape_2} columns")
+
+# The names of the columns are stored in a list called headers.
+# The names of the columns are printed to check the column names in the dataset.
+headers = df.columns.tolist()
+print("Column names:", headers)
+
+# The data type of each column is printed using the attribute dtypes of the dataframe.
+# The data type of each column is printed to check the data type of each column in the dataset.
+print("Data types:")
+print(df.dtypes)
+
+# The following portion of the code is used to describe the dataset.
+# The describe() function of the pandas library is used to get the statistical summary of the dataset.
+# The statistical summary of the dataset is printed to check the statistical summary of the dataset.
+print("Statistical summary:")
+print(df.describe())
+
+# The following portion of the code is used to know the values of the columns in the dataset.
+# The values() function of the pandas library is used to know the values of the columns in the dataset.
+# The values of the columns in the dataset are printed to check the values of the columns in the dataset.
+print("Column values:")
+print(df.values)
